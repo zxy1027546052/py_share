@@ -1,0 +1,39 @@
+
+
+#添加mod_wsgi.so模块,这三行是上面命令行中显示出来的
+LoadFile "c:/users/administrator/appdata/local/programs/python/python36/python36.dll"
+
+#设定mod_wsgi-express module-config获取的地址
+LoadModule wsgi_module "c:/users/administrator/appdata/local/programs/python/python36/lib/site-packages/mod_wsgi/server/mod_wsgi.cp36-win_amd64.pyd"
+#设定wsgi.py文件的位置，默认是在你的项目文件夹内，目前设定的教程里面的，可参考。
+
+
+WSGIScriptAlias "C:/share/crm/wsgi.py"
+#设定Python的解释文件在哪里。
+WSGIPythonHome "c:/users/administrator/appdata/local/programs/python/python36"
+
+#设定项目的root的文件路径。
+WSGIPythonPath C:/share
+
+#设定media文件路径
+Alias /media/ C:/share/media/
+#设定static文件的static路径
+Alias /static/ C:/share/static/
+
+<Directory C:/share/static>
+    Require all granted
+</Directory>
+
+<Directory C:/share/media>
+    Require all granted
+</Directory>
+
+<Directory "C:/share/">
+    <Files wsgi.py>
+        Require all granted
+    </Files>
+</Directory>
+
+
+
+

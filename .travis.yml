@@ -1,0 +1,7 @@
+language: python 
+services: - mysql 
+python: - 3.6 
+before_install: - sudo mysql -e 'CREATE DATABASE share_db;' 
+install: - pip install uwsgi 
+script: 
+- python manage.py
